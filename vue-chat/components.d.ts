@@ -8,7 +8,6 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
-    ChatInbox: typeof import('./src/components/ChatInbox.vue')['default']
     CreateRoom: typeof import('./src/components/modal/CreateRoom.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
