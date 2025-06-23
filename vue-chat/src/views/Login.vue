@@ -113,20 +113,3 @@ export default {
   },
 };
 </script>
-<style scoped>
-.login-form {
-  margin: 150px;
-  padding: 30px;
-}
-.login-box {
-  width: 50%;
-  margin: 0px auto;
-}
-.login-btn {
-  margin-right: 20px;
-}
-.login-to-signup {
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-</style>

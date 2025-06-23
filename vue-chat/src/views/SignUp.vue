@@ -101,20 +101,3 @@ export default {
   },
 };
 </script>
-<style scoped>
-.login-form {
-  margin: 170px;
-  padding: 30px;
-}
-.login-box {
-  width: 60%;
-  margin: 0px auto;
-}
-.login-btn {
-  margin-right: 20px;
-}
-.signup-to-login {
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-</style>

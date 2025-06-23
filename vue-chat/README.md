@@ -1,81 +1,123 @@
-# Vuetify (Default)
+# Vue Chat App
 
-This is the official scaffolding tool for Vuetify, designed to give you a head start in building your new Vuetify application. It sets up a base template with all the necessary configurations and standard directory structure, enabling you to begin development without the hassle of setting up the project from scratch.
+Vue + TypeScript + Firebase を用いたリアルタイムチャットアプリです。  
+Vuetify を用いて UI を整え、Firestore を使ってリアルタイムなメッセージ送受信を実現しています。  
+Vue と typeScript の学習を目的として作成しました。
 
-## ❗️ Important Links
+## 🔧 使用技術
 
-- 📄 [Docs](https://vuetifyjs.com/)
-- 🚨 [Issues](https://issues.vuetifyjs.com/)
-- 🏬 [Store](https://store.vuetifyjs.com/)
-- 🎮 [Playground](https://play.vuetifyjs.com/)
-- 💬 [Discord](https://community.vuetifyjs.com)
+- **Vue 3**
+- **TypeScript**
+- **Vuetify**
+- **Firebase**
+- **その他必要なライブラリ**
 
-## 💿 Install
+## 📸 画面一覧
 
-Set up your project using your preferred package manager. Use the corresponding command to install the dependencies:
+### 🏠 チャットルーム一覧画面
 
-| Package Manager                                                | Command        |
-|---------------------------------------------------------------|----------------|
-| [yarn](https://yarnpkg.com/getting-started)                   | `yarn install` |
-| [npm](https://docs.npmjs.com/cli/v7/commands/npm-install)     | `npm install`  |
-| [pnpm](https://pnpm.io/installation)                          | `pnpm install` |
-| [bun](https://bun.sh/#getting-started)                        | `bun install`  |
+- 参加可能なチャットルームを一覧表示
+- チャットルームの作成機能
+- 各チャットルームをクリックで詳細画面に遷移
+- Firestore からリアルタイムでルーム一覧を取得
 
-After completing the installation, your environment is ready for Vuetify development.
+### 💬 チャットルーム画面
 
-## ✨ Features
+- 選択したルーム内でのチャット機能
+- メッセージの送信・表示（リアルタイム）
+- ユーザー名・送信時刻付きでのメッセージ表示
+- Firestore に新規メッセージを追加
+- メッセージ入力欄 + 投稿・クリアボタン
 
-- 🖼️ **Optimized Front-End Stack**: Leverage the latest Vue 3 and Vuetify 3 for a modern, reactive UI development experience. [Vue 3](https://v3.vuejs.org/) | [Vuetify 3](https://vuetifyjs.com/en/)
-- 🗃️ **State Management**: Integrated with [Pinia](https://pinia.vuejs.org/), the intuitive, modular state management solution for Vue.
-- 🚦 **Routing and Layouts**: Utilizes Vue Router for SPA navigation and vite-plugin-vue-layouts-next for organizing Vue file layouts. [Vue Router](https://router.vuejs.org/) | [vite-plugin-vue-layouts-next](https://github.com/loicduong/vite-plugin-vue-layouts-next)
-- 💻 **Enhanced Development Experience**: Benefit from TypeScript's static type checking and the ESLint plugin suite for Vue, ensuring code quality and consistency. [TypeScript](https://www.typescriptlang.org/) | [ESLint Plugin Vue](https://eslint.vuejs.org/)
-- ⚡ **Next-Gen Tooling**: Powered by Vite, experience fast cold starts and instant HMR (Hot Module Replacement). [Vite](https://vitejs.dev/)
-- 🧩 **Automated Component Importing**: Streamline your workflow with unplugin-vue-components, automatically importing components as you use them. [unplugin-vue-components](https://github.com/antfu/unplugin-vue-components)
-- 🛠️ **Strongly-Typed Vue**: Use vue-tsc for type-checking your Vue components, and enjoy a robust development experience. [vue-tsc](https://github.com/johnsoncodehk/volar/tree/master/packages/vue-tsc)
+### 🔐 ログイン画面
 
-These features are curated to provide a seamless development experience from setup to deployment, ensuring that your Vuetify application is both powerful and maintainable.
+- Firebase Authentication によるメールアドレス + パスワード認証
+- ログイン後はチャット画面へ遷移
 
-## 💡 Usage
+### 📝 新規登録画面
 
-This section covers how to start the development server and build your project for production.
+- 新規ユーザー登録フォーム
+- Firebase によるアカウント作成・保存
+- 新規登録後はログイン画面へ遷移
 
-### Starting the Development Server
+## 🚀 起動方法
 
-To start the development server with hot-reload, run the following command. The server will be accessible at [http://localhost:3000](http://localhost:3000):
-
-```bash
-yarn dev
-```
-
-(Repeat for npm, pnpm, and bun with respective commands.)
-
-> Add NODE_OPTIONS='--no-warnings' to suppress the JSON import warnings that happen as part of the Vuetify import mapping. If you are on Node [v21.3.0](https://nodejs.org/en/blog/release/v21.3.0) or higher, you can change this to NODE_OPTIONS='--disable-warning=5401'. If you don't mind the warning, you can remove this from your package.json dev script.
-
-### Building for Production
-
-To build your project for production, use:
+### 1. リポジトリをクローン
 
 ```bash
-yarn build
+git clone https://github.com/Oy11241/vue-chat.git
 ```
 
-(Repeat for npm, pnpm, and bun with respective commands.)
+### 2. Firebase 設定を追加
 
-Once the build process is completed, your application will be ready for deployment in a production environment.
+src/firebase/firebase.ts に Firebase プロジェクトの構成情報を記述してください。
 
-## 💪 Support Vuetify Development
+```bash
+// firebase.ts
+import { initializeApp } from 'firebase/app';
+import { getFirestore } from 'firebase/firestore';
+import { getAuth } from 'firebase/auth';
 
-This project is built with [Vuetify](https://vuetifyjs.com/en/), a UI Library with a comprehensive collection of Vue components. Vuetify is an MIT licensed Open Source project that has been made possible due to the generous contributions by our [sponsors and backers](https://vuetifyjs.com/introduction/sponsors-and-backers/). If you are interested in supporting this project, please consider:
+const firebaseConfig = {
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_AUTH_DOMAIN",
+  projectId: "YOUR_PROJECT_ID",
+  ...
+};
 
-- [Requesting Enterprise Support](https://support.vuetifyjs.com/)
-- [Sponsoring John on Github](https://github.com/users/johnleider/sponsorship)
-- [Sponsoring Kael on Github](https://github.com/users/kaelwd/sponsorship)
-- [Supporting the team on Open Collective](https://opencollective.com/vuetify)
-- [Becoming a sponsor on Patreon](https://www.patreon.com/vuetify)
-- [Becoming a subscriber on Tidelift](https://tidelift.com/subscription/npm/vuetify)
-- [Making a one-time donation with Paypal](https://paypal.me/vuetify)
+const app = initializeApp(firebaseConfig);
 
-## 📑 License
-[MIT](http://opensource.org/licenses/MIT)
+export const db = getFirestore(app);
+export const auth = getAuth(app);
 
-Copyright (c) 2016-present Vuetify, LLC
+```
+
+### 3. 依存関係をインストール
+
+```bash
+npm install
+```
+
+### 4. 開発サーバーを起動
+
+```bash
+npm run dev
+```
+
+## 📁 ディレクトリ構成
+
+```bash
+src/
+│  App.vue             # ルートコンポーネント
+│  index.css           # グローバルスタイル
+│  main.ts             # アプリのエントリポイント
+│
+├─components
+│  ├─layouts
+│  │      Sidebar.vue  # サイドメニュー
+│  └─modal
+│         CreateRoom.vue # ルーム作成モーダル
+│
+├─firebase
+│      firebase.ts     # Firebaseの初期設定
+│
+├─plugins
+│      index.ts        # VuetifyやRouterの統合
+│      vuetify.ts      # Vuetify設定
+│
+├─router
+│      index.ts        # ルーティング定義
+│
+└─views
+       ChatBoard.vue   # チャットルーム画面
+       Login.vue       # ログイン画面
+       RoomList.vue    # チャットルーム一覧画面
+       SignUp.vue      # 新規登録画面
+```
+
+## 💡 今後の予定
+
+- チャットルームごとのメンバー表示と退出機能の実装
+- 画像・ファイルの添付機能
+- プロフィール画像の変更機能
+- モバイル UI の改善・レスポンシブ対応

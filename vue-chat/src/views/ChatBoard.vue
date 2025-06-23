@@ -154,27 +154,3 @@ export default {
   },
 };
 </script>
-<style scoped>
-.message {
-  text-align: left;
-}
-.avatar-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 80px;
-  margin-right: 10px;
-}
-.username {
-  font-size: 0.8rem;
-  margin-top: 4px;
-  color: #555;
-}
-.timestamp {
-  font-size: 0.75rem;
-  color: #888;
-  margin-left: auto;
-  align-self: flex-start;
-  padding-top: 4px;
-}
-</style>
